@@ -18,9 +18,8 @@ return {
         show_tab_indicators = true,
       },
     }
-    vim.keymap.set('n', '<leader>bn', ':BufferLineCycleNext<CR>', { desc = 'Navigate to next buffer' })
-    vim.keymap.set('n', '<leader>bp', ':BufferLineCyclePrev<CR>', { desc = 'Navigate to previous buffer' })
-    vim.keymap.set('n', '<leader>bP', ':BufferLinePick<CR>', { desc = 'Pick a buffer' })
-    vim.keymap.set('n', '<leader>bx', ':BufferLinePickClose<CR>', { desc = 'Pick a buffer to close' })
+    vim.keymap.set('n', '<leader>bp', ':BufferLinePick<CR>', { desc = 'Pick a buffer' })
+    vim.keymap.set('n', '<leader>bP', ':BufferLineTogglePin<CR>', { desc = 'Toggle the pin status of a buffer' })
+    vim.keymap.set('n', '<leader>bX', ':BufferLinePickClose<CR>', { desc = 'Pick a buffer to close' })
   end,
 }
