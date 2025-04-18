@@ -37,10 +37,6 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
--- [[ Custom Keymaps]]
-vim.keymap.set("n", "]b", ":bnext<CR>", { desc = "Navigate to the next buffer" })
-vim.keymap.set("n", "[b", ":bprev<CR>", { desc = "Navigate to the previous buffer" })
-
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -54,5 +50,35 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+-- ###########################################
+-- ########## custom key mappings ############
+-- ###########################################
+
+vim.keymap.set('n', '<leader>x', '<cmd>bd<CR>', { desc = 'Close current buffer' })
+
+-- delete single character without copying into register
+vim.keymap.set('n', 'x', '"_x')
+
+-- use jk to escape
+vim.keymap.set('i', 'jk', '<ESC>')
+
+-- use ctrl+s to save to buffer
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-s>', '<cmd> w <cr><ESC>')
+
+-- tab management
+vim.keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = 'Open new tab' }) -- open new tab
+vim.keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>', { desc = 'Close current tab' }) -- close current tab
+vim.keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', { desc = 'Go to next tab' }) --  go to next tab
+vim.keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = 'Go to previous tab' }) --  go to previous tab
+vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current buffer in new tab' }) --  move current buffer to new tab
+
+-- buffer management
+vim.keymap.set('n', '<leader>bo', '<cmd>bnew<CR>', { desc = 'Open new buffer' }) -- open new buffer
+vim.keymap.set('n', '<leader>bx', '<cmd>bd<CR>', { desc = 'Close current buffer' }) -- close current buffer
+vim.keymap.set('n', '<leader>bn', '<cmd>bnext<CR>', { desc = 'Go to next buffer' }) --  go to next buffer
+vim.keymap.set('n', '<leader>bp', '<cmd>bprev<CR>', { desc = 'Go to previous buffer' }) --  go to previous buffer
+vim.keymap.set('n', ']b', ':bnext<CR>', { desc = 'Navigate to the next buffer' })
+vim.keymap.set('n', '[b', ':bprev<CR>', { desc = 'Navigate to the previous buffer' })
 
 -- vim: ts=2 sts=2 sw=2 et
