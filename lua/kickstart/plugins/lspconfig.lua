@@ -221,6 +221,11 @@ return {
         -- ts_ls = {},
         --
 
+        tinymist = {
+          cmd = { 'tinymist' },
+          filetypes = { 'typst' },
+          settings = {},
+        },
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
