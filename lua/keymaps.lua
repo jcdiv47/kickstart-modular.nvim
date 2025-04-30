@@ -87,7 +87,7 @@ vim.keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = 'Go to previous tab'
 vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current buffer in new tab' }) --  move current buffer to new tab
 
 -- Buffer management
-vim.keymap.set('n', '<leader>bo', '<cmd>bnew<CR>', { desc = 'Open new buffer' }) -- open new buffer
+vim.keymap.set('n', '<leader>bo', '<cmd>enew<CR>', { desc = 'Open new buffer' }) -- open new buffer
 vim.keymap.set('n', '<leader>bx', '<cmd>bd<CR>', { desc = 'Close current buffer' }) -- close current buffer
 vim.keymap.set('n', '<leader>bn', '<cmd>bnext<CR>', { desc = 'Go to next buffer' }) --  go to next buffer
 vim.keymap.set('n', '<leader>bp', '<cmd>bprev<CR>', { desc = 'Go to previous buffer' }) --  go to previous buffer
