@@ -1,53 +1,89 @@
+-- Copied from https://github.com/Sin-cy/dotfiles/blob/cfa210f245e54ab0e3956fcb6c1e9da872d5de92/nvim/.config/nvim/lua/sethy/plugins/lualine.lua
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
-    require('lualine').setup {
+    local lualine = require 'lualine'
+    local lazy_status = require 'lazy.status' -- to configure lazy pending updates count
+
+    local colors = {
+      color0 = '#092236',
+      color1 = '#ff5874',
+      color2 = '#c3ccdc',
+      color3 = '#1c1e26',
+      color6 = '#a1aab8',
+      color7 = '#828697',
+      color8 = '#ae81ff',
+    }
+    local my_lualine_theme = {
+      replace = {
+        a = { fg = colors.color0, bg = colors.color1, gui = 'bold' },
+        b = { fg = colors.color2, bg = colors.color3 },
+      },
+      inactive = {
+        a = { fg = colors.color6, bg = colors.color3, gui = 'bold' },
+        b = { fg = colors.color6, bg = colors.color3 },
+        c = { fg = colors.color6, bg = colors.color3 },
+      },
+      normal = {
+        a = { fg = colors.color0, bg = colors.color7, gui = 'bold' },
+        b = { fg = colors.color2, bg = colors.color3 },
+        c = { fg = colors.color2, bg = colors.color3 },
+      },
+      visual = {
+        a = { fg = colors.color0, bg = colors.color8, gui = 'bold' },
+        b = { fg = colors.color2, bg = colors.color3 },
+      },
+      insert = {
+        a = { fg = colors.color0, bg = colors.color2, gui = 'bold' },
+        b = { fg = colors.color2, bg = colors.color3 },
+      },
+    }
+
+    local mode = {
+      'mode',
+      fmt = function(str)
+        return ' ' .. str
+      end,
+    }
+
+    local branch = { 'branch', icon = { '', color = { fg = '#A6D4DE' } } }
+
+    local diff = {
+      'diff',
+      colored = true,
+      symbols = { added = ' ', modified = ' ', removed = ' ' }, -- changes diff symbols
+      -- cond = hide_in_width,
+    }
+
+    local filename = {
+      'filename',
+      file_status = true,
+      path = 3, -- 3: Absolute path, with tilde as the home directory
+      shorting_target = 40, -- Shortens path to leave 40 spaces in the window
+    }
+
+    lualine.setup {
+      icons_enabled = true,
       options = {
-        icons_enabled = true,
-        theme = 'powerline',
-        component_separators = { left = '', right = '' },
+        theme = my_lualine_theme,
+        component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
-        disabled_filetypes = {
-          statusline = {},
-          winbar = {},
-        },
-        ignore_focus = {},
-        always_divide_middle = true,
-        always_show_tabline = true,
-        globalstatus = false,
-        refresh = {
-          statusline = 100,
-          tabline = 100,
-          winbar = 100,
-        },
       },
       sections = {
-        lualine_a = { 'mode' },
-        lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = {
+        lualine_a = { mode },
+        lualine_b = { branch, diff, 'diagnostics' },
+        lualine_c = { filename },
+        lualine_x = {
           {
-            'filename',
-            path = 3, -- 3: Absolute path, with tilde as the home directory
-            shorting_target = 40, -- Shortens path to leave 40 spaces in the window
+            lazy_status.updates,
+            cond = lazy_status.has_updates,
+            color = { fg = '#ff9e64' },
           },
         },
-        lualine_x = { 'lsp_status', 'fileformat' },
-        lualine_y = { 'progress' },
+        lualine_y = { 'lsp_status', 'progress' },
         lualine_z = { 'location' },
       },
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { 'filename' },
-        lualine_x = { 'location' },
-        lualine_y = {},
-        lualine_z = {},
-      },
-      tabline = {},
-      winbar = {},
-      inactive_winbar = {},
-      extensions = {},
     }
   end,
 }
