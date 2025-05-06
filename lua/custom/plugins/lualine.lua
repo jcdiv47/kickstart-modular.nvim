@@ -25,7 +25,13 @@ return {
       sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { 'filename' },
+        lualine_c = {
+          {
+            'filename',
+            path = 3, -- 3: Absolute path, with tilde as the home directory
+            shorting_target = 40, -- Shortens path to leave 40 spaces in the window
+          },
+        },
         lualine_x = { 'lsp_status', 'fileformat' },
         lualine_y = { 'progress' },
         lualine_z = { 'location' },

@@ -11,6 +11,7 @@ return {
         -- load custom snippets for luasnip
         config = function()
           require('luasnip.loaders.from_vscode').lazy_load { paths = { './snippets' } }
+          require('luasnip.loaders.from_lua').lazy_load { paths = { './lua/luasnip/snippets' } }
         end,
         build = (function()
           -- Build Step is needed for regex support in snippets.
