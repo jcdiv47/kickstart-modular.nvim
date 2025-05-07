@@ -31,6 +31,10 @@ vim.opt.showmode = false
 --   vim.opt.clipboard = 'unnamedplus'
 -- end)
 
+-- Special register linked to system clipboard.
+-- That is, one can use ctrl+v to paste content yanked by this.
+vim.keymap.set('v', '<leader>y', '"+y')
+
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -73,5 +77,8 @@ vim.opt.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.opt.confirm = true
+
+-- Turn off swapfile
+vim.opt.swapfile = false
 
 -- vim: ts=2 sts=2 sw=2 et
