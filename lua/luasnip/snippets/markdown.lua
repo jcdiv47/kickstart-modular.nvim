@@ -10,18 +10,29 @@ local function get_date()
   return os.date '%Y-%m-%dT%H:%M:%S+08:00'
 end
 
+local frontmatter_snip = s('---', {
+  t { '---', 'title: ' },
+  i(1, 'insert title here...'),
+  t { '', 'date: ' },
+  f(get_date, {}),
+  t { '', '---', '' },
+  i(2),
+})
+
+local detail_snip = s('detail', {
+  t { '<details><summary>' },
+  i(1, 'insert summary here...'),
+  t { '</summary>', '', '' },
+  i(2, 'insert details here...'),
+  t { '', '</details>' },
+})
+
 return {
   s('date', {
     f(get_date, {}),
   }),
-  s('---', {
-    t { '---', 'title: ' },
-    i(1, 'insert title here...'),
-    t { '', 'date: ' },
-    f(get_date, {}),
-    t { '', '---', '' },
-    i(2),
-  }),
+  frontmatter_snip,
+  detail_snip,
   s('tag', {
     t { 'tags:', '  - ' },
     i(1, 'insert tags here...'),
