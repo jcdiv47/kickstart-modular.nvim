@@ -10,10 +10,12 @@ local function get_date()
   return os.date '%Y-%m-%dT%H:%M:%S+08:00'
 end
 
-local frontmatter_snip = s('---', {
+local frontmatter_snip = s('frontmatter', {
   t { '---', 'title: ' },
   i(1, 'insert title here...'),
   t { '', 'date: ' },
+  f(get_date, {}),
+  t { '', 'modified: ' },
   f(get_date, {}),
   t { '', '---', '' },
   i(2),
