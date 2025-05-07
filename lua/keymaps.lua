@@ -70,9 +70,6 @@ end
 -- Use cmd+s to save to buffer
 vim.keymap.set({ 'n', 'i', 'v' }, save_key, '<cmd>w<CR><ESC>')
 
--- Close current buffer
-vim.keymap.set('n', '<leader>x', '<cmd>bd<CR>', { desc = 'Close current buffer' })
-
 -- Delete single character without copying into register
 vim.keymap.set('n', 'x', '"_x')
 
