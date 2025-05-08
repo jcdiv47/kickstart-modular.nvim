@@ -56,11 +56,28 @@ return {
       -- cond = hide_in_width,
     }
 
+    local tabs = {
+      'tabs',
+      tab_max_length = 40, -- Maximum width of each tab. The content will be shorten dynamically (example: apple/orange -> a/orange)
+      max_length = vim.o.columns / 3, -- Maximum width of tabs component.
+      -- Note:
+      -- It can also be a function that returns
+      -- the value of `max_length` dynamically.
+      mode = 0, -- 0: Shows tab_nr
+    }
+
     local filename = {
       'filename',
       file_status = true,
       path = 3, -- 3: Absolute path, with tilde as the home directory
       shorting_target = 40, -- Shortens path to leave 40 spaces in the window
+    }
+
+    local lsp_status = {
+      'lsp_status',
+      symbols = {
+        spinner = { '', '', '', '', '', '' },
+      },
     }
 
     lualine.setup {
@@ -80,8 +97,9 @@ return {
             cond = lazy_status.has_updates,
             color = { fg = '#ff9e64' },
           },
+          tabs,
         },
-        lualine_y = { 'lsp_status', 'progress' },
+        lualine_y = { lsp_status, 'progress' },
         lualine_z = { 'location' },
       },
     }

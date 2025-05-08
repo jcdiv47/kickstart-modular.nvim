@@ -81,4 +81,11 @@ vim.opt.confirm = true
 -- Turn off swapfile
 vim.opt.swapfile = false
 
+-- Disable tabline at the top
+-- Check: https://neovim.io/doc/user/options.html#'showtabline'
+-- 0: never
+-- 1: only if there are at least two tab pages
+-- 2: always
+vim.opt.showtabline = 0
+
 -- vim: ts=2 sts=2 sw=2 et

@@ -52,7 +52,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- ###########################################
--- ########## custom key mappings ############
+-- ########## Custom key mappings ############
 -- ###########################################
 
 -- Define the save key based on the operating system
@@ -93,5 +93,16 @@ vim.keymap.set('n', '[b', ':bprev<CR>', { desc = 'Navigate to the previous buffe
 
 -- Oil
 vim.keymap.set('n', '<leader>o', '<cmd>Oil<CR>', { desc = 'Open Oil' })
+
+-- Fuzzy finder for git dirty files
+vim.keymap.set('n', '<space>gb', function()
+  require('telescope.builtin').git_branches()
+end, { noremap = true, silent = true, desc = 'git branches' })
+vim.keymap.set('n', '<space>gc', function()
+  require('telescope.builtin').git_commits()
+end, { noremap = true, silent = true, desc = 'git commits' })
+vim.keymap.set('n', '<space>gs', function()
+  require('telescope.builtin').git_status()
+end, { noremap = true, silent = true, desc = 'git status' })
 
 -- vim: ts=2 sts=2 sw=2 et
