@@ -37,8 +37,24 @@ return {
     harpoon:setup()
     -- REQUIRED
 
+    local function bufferInHarpoonList()
+      local relative_path = vim.fn.fnamemodify(vim.fn.expand '%:p', ':~:.')
+      for _, item in ipairs(harpoon:list().items) do
+        if relative_path == item.value then
+          return true
+        end
+      end
+      return false
+    end
+
     vim.keymap.set('n', '<leader>a', function()
+      -- First check if current buffer is already added to Harpoon.
+      local inHarpoonList = bufferInHarpoonList()
+      -- Regardless, still add the buffer(in case the previous logic is false positive).
       harpoon:list():add()
+      if not inHarpoonList then -- Notify only when newly added.
+        vim.notify('Added buffer to Harpoon.', vim.log.levels.INFO)
+      end
     end, { desc = 'Add a buffer to Harpoon' })
     vim.keymap.set('n', '<C-e>', function()
       harpoon.ui:toggle_quick_menu(harpoon:list())
@@ -54,18 +70,18 @@ return {
     end)
     vim.keymap.set('n', '<leader>1', function()
       harpoon:list():select(1)
-    end, { desc = 'Go to the first buffer in Harpoon' })
+    end, { desc = 'Go to the [1]st buffer in Harpoon' })
     vim.keymap.set('n', '<leader>2', function()
       harpoon:list():select(2)
-    end, { desc = 'Go to the second buffer in Harpoon' })
+    end, { desc = 'Go to the [2]nd buffer in Harpoon' })
     vim.keymap.set('n', '<leader>3', function()
       harpoon:list():select(3)
-    end, { desc = 'Go to the third buffer in Harpoon' })
+    end, { desc = 'Go to the [3]rd buffer in Harpoon' })
     vim.keymap.set('n', '<leader>4', function()
       harpoon:list():select(4)
-    end, { desc = 'Go to the fourth buffer in Harpoon' })
+    end, { desc = 'Go to the [4]th buffer in Harpoon' })
     vim.keymap.set('n', '<leader>5', function()
       harpoon:list():select(5)
-    end, { desc = 'Go to the fifth buffer in Harpoon' })
+    end, { desc = 'Go to the [5]th buffer in Harpoon' })
   end,
 }
