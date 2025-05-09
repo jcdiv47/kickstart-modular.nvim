@@ -55,20 +55,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- ########## Custom key mappings ############
 -- ###########################################
 
--- Define the save key based on the operating system
-local save_key
-
-if vim.fn.has 'win32' then
-  save_key = '<C-s>' -- Ctrl+s on Windows
-elseif vim.fn.has 'mac' then
-  save_key = '<D-s>' -- Cmd+s on macOS
-else
-  -- Default to Ctrl+s for other operating systems (like Linux)
-  save_key = '<C-s>'
-end
-
--- Use cmd+s to save to buffer
-vim.keymap.set({ 'n', 'i', 'v' }, save_key, '<cmd>w<CR><ESC>')
+-- Use ctrl+s to save to buffer in windows and linux
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-s>', '<cmd>w<CR><ESC>')
+-- Use cmd+s to save to buffer in macos
+vim.keymap.set({ 'n', 'i', 'v' }, '<D-s>', '<cmd>w<CR><ESC>')
 
 -- Delete single character without copying into register
 vim.keymap.set('n', 'x', '"_x')
@@ -104,5 +94,10 @@ end, { noremap = true, silent = true, desc = 'git commits' })
 vim.keymap.set('n', '<space>gs', function()
   require('telescope.builtin').git_status()
 end, { noremap = true, silent = true, desc = 'git status' })
+
+-- Paste from system clipboard (using "*")
+vim.keymap.set('n', '<leader>y', ':normal! "*p<CR>', { noremap = true, silent = true })
+-- Optional: Paste from primary selection (using "+")
+vim.keymap.set('n', '<leader>Y', ':normal! "+p<CR>', { noremap = true, silent = true })
 
 -- vim: ts=2 sts=2 sw=2 et
