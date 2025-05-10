@@ -9,8 +9,8 @@ return {
         'mtime',
       },
       keymaps = {
-        ['<M-v>'] = { 'actions.select', opts = { vertical = true } },
-        ['<M-j>'] = { 'actions.select', opts = { horizontal = true } },
+        ['<C-v>'] = { 'actions.select', opts = { vertical = true } },
+        ['<C-h>'] = { 'actions.select', opts = { horizontal = true } },
         ['q'] = 'actions.close',
         ['g?'] = { 'actions.show_help', mode = 'n' },
         ['<CR>'] = 'actions.select',

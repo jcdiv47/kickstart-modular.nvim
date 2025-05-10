@@ -14,6 +14,7 @@ return {
       color6 = '#a1aab8',
       color7 = '#828697',
       color8 = '#ae81ff',
+      color9 = '#154c79',
     }
     local my_lualine_theme = {
       replace = {
@@ -27,16 +28,18 @@ return {
       },
       normal = {
         a = { fg = colors.color0, bg = colors.color7, gui = 'bold' },
-        b = { fg = colors.color2, bg = colors.color3 },
-        c = { fg = colors.color2, bg = colors.color3 },
+        b = { fg = colors.color2, bg = colors.color9 },
+        c = { fg = colors.color2, bg = colors.color9 },
       },
       visual = {
         a = { fg = colors.color0, bg = colors.color8, gui = 'bold' },
-        b = { fg = colors.color2, bg = colors.color3 },
+        b = { fg = colors.color2, bg = colors.color9 },
+        c = { fg = colors.color2, bg = colors.color9 },
       },
       insert = {
         a = { fg = colors.color0, bg = colors.color2, gui = 'bold' },
-        b = { fg = colors.color2, bg = colors.color3 },
+        b = { fg = colors.color2, bg = colors.color9 },
+        c = { fg = colors.color2, bg = colors.color9 },
       },
     }
 
@@ -64,6 +67,11 @@ return {
       -- It can also be a function that returns
       -- the value of `max_length` dynamically.
       mode = 0, -- 0: Shows tab_nr
+      tabs_color = {
+        -- Same values as the general color option can be used here.
+        active = 'lualine_a_normal', -- Color for active tab.
+        inactive = 'lualine_b_normal', -- Color for inactive tab.
+      },
     }
 
     local filename = {

@@ -1,3 +1,4 @@
+---@diagnostic disable
 return {
   'folke/snacks.nvim',
   ---@type snacks.Config
@@ -13,6 +14,41 @@ return {
         { icon = ' ', title = 'Projects', section = 'projects', indent = 2, padding = 1 },
         { section = 'startup' },
       },
+    },
+    scroll = { enabled = true },
+    styles = {
+      terminal = {
+        relative = 'editor',
+        border = 'rounded',
+        position = 'float',
+        backdrop = 0.9,
+        height = 0.7,
+        width = 0.7,
+        zindex = 50,
+      },
+    },
+  },
+  keys = {
+    {
+      '<leader>bd',
+      function()
+        Snacks.bufdelete()
+      end,
+      desc = 'Snacks delete Buffer',
+    },
+    {
+      '<A-i>',
+      function()
+        Snacks.terminal()
+      end,
+      desc = 'Snacks toggle Terminal',
+    },
+    {
+      '<leader>u',
+      function()
+        require('snacks').picker.undo()
+      end,
+      desc = 'Snacks undo history',
     },
   },
 }
