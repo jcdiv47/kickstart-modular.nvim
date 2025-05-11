@@ -72,8 +72,6 @@ vim.keymap.set({ 'n', 'x' }, '<S-l>', '$', { desc = 'Go to end of line' })
 -- Tab management
 vim.keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = 'Open new [T]ab' }) -- open new tab
 vim.keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>', { desc = 'Close current [T]ab' }) -- close current tab
-vim.keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', { desc = 'Go to next [T]ab' }) --  go to next tab
-vim.keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = 'Go to previous [T]ab' }) --  go to previous tab
 vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current buffer in new [T]ab' }) --  move current buffer to new tab
 
 -- Buffer management
