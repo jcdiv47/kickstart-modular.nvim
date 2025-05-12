@@ -66,6 +66,9 @@ return {
             require('telescope.themes').get_dropdown(),
           },
         },
+
+        -- Custom and advanced telescope usage
+        require('dev.multigrep').setup(),
       }
 
       -- Enable Telescope extensions if they are installed
@@ -96,12 +99,12 @@ return {
 
       -- It's also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
-      vim.keymap.set('n', '<leader>s/', function()
+      vim.keymap.set('n', '<leader>s<leader>', function()
         builtin.live_grep {
           grep_open_files = true,
           prompt_title = 'Live Grep in Open Files',
         }
-      end, { desc = '[S]earch [/] in Open Files' })
+      end, { desc = '[S]earch in Open Files' })
 
       -- Shortcut for searching your Neovim configuration files
       vim.keymap.set('n', '<leader>sn', function()
