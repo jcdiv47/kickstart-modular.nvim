@@ -53,7 +53,7 @@ return {
       -- Regardless, still add the buffer(in case the previous logic is false positive).
       harpoon:list():add()
       if not inHarpoonList then -- Notify only when newly added.
-        vim.notify('Added buffer to Harpoon.', vim.log.levels.INFO)
+        require 'notify'('Added buffer to Harpoon.', vim.log.levels.INFO, { render = 'wrapped-compact', title = 'Harpoon' })
       end
     end, { desc = 'Add a buffer to Harpoon' })
     vim.keymap.set('n', '<C-e>', function()
