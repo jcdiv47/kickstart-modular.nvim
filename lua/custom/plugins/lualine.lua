@@ -4,7 +4,7 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     local lualine = require 'lualine'
-    local lazy_status = require 'lazy.status' -- to configure lazy pending updates count
+    local mocha = require('catppuccin.palettes').get_palette 'mocha'
 
     local colors = {
       color0 = '#092236',
@@ -27,19 +27,19 @@ return {
         c = { fg = colors.color6, bg = colors.color3 },
       },
       normal = {
-        a = { fg = colors.color0, bg = colors.color7, gui = 'bold' },
-        b = { fg = colors.color2, bg = colors.color9 },
-        c = { fg = colors.color2, bg = colors.color9 },
+        a = { fg = colors.color2, bg = colors.color9, gui = 'bold' },
+        b = { fg = colors.color2, bg = mocha.base },
+        c = { fg = colors.color2, bg = mocha.base },
       },
       visual = {
         a = { fg = colors.color0, bg = colors.color8, gui = 'bold' },
-        b = { fg = colors.color2, bg = colors.color9 },
-        c = { fg = colors.color2, bg = colors.color9 },
+        b = { fg = colors.color2, bg = mocha.base },
+        c = { fg = colors.color2, bg = mocha.base },
       },
       insert = {
         a = { fg = colors.color0, bg = colors.color2, gui = 'bold' },
-        b = { fg = colors.color2, bg = colors.color9 },
-        c = { fg = colors.color2, bg = colors.color9 },
+        b = { fg = colors.color2, bg = mocha.base },
+        c = { fg = colors.color2, bg = mocha.base },
       },
     }
 
@@ -79,6 +79,7 @@ return {
       file_status = true,
       path = 3, -- 3: Absolute path, with tilde as the home directory
       shorting_target = 40, -- Shortens path to leave 40 spaces in the window
+      color = { bg = mocha.base },
     }
 
     local lsp_status = {
@@ -98,17 +99,14 @@ return {
       sections = {
         lualine_a = { mode },
         lualine_b = { branch, diff, 'diagnostics' },
-        lualine_c = { filename },
-        lualine_x = {
-          {
-            lazy_status.updates,
-            cond = lazy_status.has_updates,
-            color = { fg = '#ff9e64' },
-          },
-          tabs,
-        },
+        lualine_c = {},
+        lualine_x = {},
         lualine_y = { lsp_status, 'progress' },
         lualine_z = { 'location' },
+      },
+      winbar = {
+        lualine_y = { filename },
+        lualine_z = { tabs },
       },
     }
   end,
