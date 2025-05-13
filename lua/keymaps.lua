@@ -65,6 +65,8 @@ vim.keymap.set('n', 'x', '"_x')
 
 -- Use jk to escape
 vim.keymap.set('i', 'jk', '<ESC>')
+-- Use jk to exit terminal mode
+vim.keymap.set('t', 'jk', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 vim.keymap.set({ 'n', 'x' }, '<S-h>', '^', { desc = 'Go to start of line' })
 vim.keymap.set({ 'n', 'x' }, '<S-l>', '$', { desc = 'Go to end of line' })
