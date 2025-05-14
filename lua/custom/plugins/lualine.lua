@@ -41,6 +41,11 @@ return {
         b = { fg = colors.color2, bg = mocha.base },
         c = { fg = colors.color2, bg = mocha.base },
       },
+      terminal = {
+        a = { fg = colors.color0, bg = colors.color6, gui = 'bold' },
+        b = { fg = colors.color2, bg = mocha.base },
+        c = { fg = colors.color2, bg = mocha.base },
+      },
     }
 
     local mode = {
@@ -99,7 +104,7 @@ return {
       sections = {
         lualine_a = { mode },
         lualine_b = { branch, diff, 'diagnostics' },
-        lualine_c = {},
+        lualine_c = { 'filename' },
         lualine_x = {},
         lualine_y = { lsp_status, 'progress' },
         lualine_z = { 'location' },
